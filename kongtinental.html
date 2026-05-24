@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kongtinental Ventures — Building Africa's Digital Future</title>
+<meta name="description" content="Kongtinental Ventures builds technology products for African markets. Based in France, operating across Cameroon, Namibia and beyond."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:    #0a0f0a;
+  --ink2:   #1a2a1a;
+  --muted:  #4a6a4a;
+  --muted2: #8a9a8a;
+  --bg:     #f7f5f0;
+  --bg2:    #ffffff;
+  --border: rgba(10,15,10,0.10);
+  --border2:rgba(10,15,10,0.18);
+  --cyan:   #00d48c;
+  --gold:   #c8a84b;
+  --gold2:  #f5c842;
+  --green:  #1a7a5e;
+  --r: 4px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--border2);}
+
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:68px;
+  background:rgba(247,245,240,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:all 0.3s;
+}
+nav.scrolled {
+  background:rgba(255,255,255,0.96);
+  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo {
+  display:flex;align-items:center;gap:14px;text-decoration:none;
+}
+.nav-hex {
+  width:36px;height:36px;
+  background:var(--green);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.nav-hex::after {
+  content:'';position:absolute;inset:3px;
+  background:var(--cyan);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+}
+.nav-brand {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:700;
+  color:var(--ink);letter-spacing:0.02em;
+}
+.nav-brand span{color:var(--gold);}
+.nav-links {
+  display:flex;align-items:center;gap:36px;
+  list-style:none;
+}
+.nav-links a {
+  font-size:0.82rem;font-weight:500;letter-spacing:0.05em;
+  color:var(--muted);text-decoration:none;transition:color 0.2s;
+  text-transform:uppercase;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta {
+  padding:9px 22px;
+  background:var(--ink);color:#fff;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;
+  transition:all 0.2s;
+}
+.nav-cta:hover{background:var(--ink2);transform:translateY(-1px);}
+.lang-sw {
+  display:flex;gap:2px;background:var(--border);border-radius:4px;padding:2px;
+}
+.lang-sw button {
+  padding:4px 10px;border:none;background:transparent;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
+  letter-spacing:0.1em;color:var(--muted);cursor:pointer;border-radius:3px;
+  transition:all 0.18s;
+}
+.lang-sw button.active{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,0.08);}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 48px 80px;
+  position:relative;overflow:hidden;
+  background:var(--green);
+}
+.hero-bg {
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(0,196,212,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(200,168,75,0.08) 0%, transparent 50%),
+    linear-gradient(160deg, #0a0f0a 0%, #0f1a0f 40%, #0a120a 100%);
+}
+.hero-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,196,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,196,212,0.04) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content {position:relative;z-index:2;max-width:900px;}
+.hero-tag {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--cyan);
+  margin-bottom:32px;
+}
+.hero-tag::before {
+  content:'';width:24px;height:1px;background:var(--cyan);
+}
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:600;line-height:1.05;
+  color:#fff;margin-bottom:28px;
+  letter-spacing:-0.02em;
+}
+.hero-title em {
+  font-style:normal;
+  background:linear-gradient(135deg,var(--cyan),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub {
+  font-size:1.05rem;color:rgba(255,255,255,0.55);
+  line-height:1.75;max-width:520px;margin-bottom:48px;
+  font-weight:300;
+}
+.hero-actions {display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-primary {
+  padding:14px 32px;background:var(--cyan);color:var(--ink);
+  font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-primary:hover{background:#00d8ea;transform:translateY(-1px);}
+.btn-ghost {
+  padding:14px 32px;background:transparent;color:rgba(255,255,255,0.7);
+  font-size:0.82rem;font-weight:500;letter-spacing:0.08em;
+  border:1px solid rgba(255,255,255,0.2);border-radius:var(--r);
+  cursor:pointer;text-decoration:none;transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4);color:#fff;}
+.hero-stats {
+  position:absolute;right:48px;bottom:80px;z-index:2;
+  display:flex;flex-direction:column;gap:24px;
+}
+.hstat {text-align:right;}
+.hstat-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:700;
+  color:#fff;line-height:1;
+}
+.hstat-num span{color:var(--cyan);}
+.hstat-lbl {
+  font-family:'DM Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);margin-top:4px;
+}
+.hero-scroll {
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-line {
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.3));
+  animation:scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown{0%,100%{opacity:0;transform:scaleY(0);transform-origin:top;}50%{opacity:1;transform:scaleY(1);}}
+
+/* ── SECTION BASE ── */
+section {padding:100px 48px;}
+.section-tag {
+  font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-tag::before{content:'';width:20px;height:1px;background:var(--cyan);}
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:600;
+  color:var(--ink);line-height:1.15;letter-spacing:-0.01em;
+}
+.section-sub {
+  font-size:1rem;color:var(--muted);line-height:1.75;
+  max-width:540px;margin-top:16px;font-weight:300;
+}
+
+/* ── ABOUT ── */
+.about-wrap {
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.about-visual {
+  position:relative;height:480px;
+}
+.about-card {
+  position:absolute;background:var(--bg2);
+  border:1px solid var(--border);border-radius:8px;
+  padding:20px 24px;
+}
+.about-card-main {
+  inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  background:linear-gradient(160deg,#0a0f0a,#0f1f1a);border:none;
+  overflow:hidden;
+}
+.about-card-main::before {
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,196,212,0.15),transparent 70%);
+}
+.about-card-overlay {position:relative;z-index:1;}
+.about-card-label {
+  font-family:'DM Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);margin-bottom:8px;
+}
+.about-card-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:700;color:#fff;line-height:1;
+}
+.about-card-val span{color:var(--cyan);}
+.about-badge {
+  position:absolute;top:20px;right:-16px;
+  background:var(--gold);color:var(--ink);
+  font-family:'DM Mono',monospace;font-size:0.65rem;
+  font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;
+  box-shadow:0 4px 16px rgba(200,168,75,0.3);
+}
+.about-card-sm {
+  width:160px;
+}
+.about-card-sm-1{bottom:-20px;left:20px;}
+.about-card-sm-2{top:20px;right:-20px;}
+.about-sm-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:700;color:var(--ink);
+}
+.about-sm-lbl {
+  font-family:'DM Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);
+  margin-top:2px;
+}
+.about-text {display:flex;flex-direction:column;gap:24px;}
+.about-text p{font-size:1rem;color:var(--muted);line-height:1.8;font-weight:300;}
+.about-text strong{color:var(--ink);font-weight:600;}
+.values-grid {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;}
+.value-item {
+  padding:16px;background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);
+}
+.value-icon{font-size:1.2rem;margin-bottom:6px;}
+.value-title{font-size:0.82rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.value-desc{font-size:0.75rem;color:var(--muted2);line-height:1.5;}
+
+/* ── BUSINESSES ── */
+.businesses {background:var(--ink);}
+.businesses .section-title{color:#fff;}
+.businesses .section-sub{color:rgba(255,255,255,0.45);}
+.biz-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;overflow:hidden;margin-top:60px;
+}
+.biz-card {
+  background:rgba(255,255,255,0.02);
+  padding:36px 32px;cursor:pointer;
+  transition:background 0.2s;position:relative;overflow:hidden;
+}
+.biz-card::before {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--card-color,var(--cyan)) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.biz-card:hover{background:rgba(255,255,255,0.05);}
+.biz-card:hover::before{opacity:0.06;}
+.biz-icon {
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.biz-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;color:#fff;margin-bottom:4px;
+}
+.biz-domain {
+  font-family:'DM Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-bottom:12px;
+}
+.biz-market {
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:'DM Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;margin-bottom:16px;
+}
+.biz-desc {
+  font-size:0.82rem;color:rgba(255,255,255,0.45);
+  line-height:1.7;font-weight:300;
+}
+.biz-status {
+  position:absolute;top:20px;right:20px;
+  font-family:'DM Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;
+}
+.status-live{background:rgba(0,196,212,0.15);color:var(--cyan);border:1px solid rgba(0,196,212,0.2);}
+.status-pipeline{background:rgba(200,168,75,0.15);color:var(--gold2);border:1px solid rgba(200,168,75,0.2);}
+.status-planned{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.08);}
+.market-cam{background:rgba(0,196,212,0.1);color:var(--cyan);border:1px solid rgba(0,196,212,0.15);}
+.market-nam{background:rgba(26,122,94,0.15);color:#2ecc94;border:1px solid rgba(26,122,94,0.2);}
+.market-ci{background:rgba(245,200,66,0.1);color:var(--gold2);border:1px solid rgba(245,200,66,0.15);}
+.market-global{background:rgba(168,85,247,0.1);color:#c084fc;border:1px solid rgba(168,85,247,0.2);}
+.biz-card.featured {grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+.biz-featured-right {padding-top:8px;}
+.biz-featured-stat {margin-bottom:24px;}
+.biz-featured-stat-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:700;color:#fff;
+}
+.biz-featured-stat-num span{color:var(--cyan);}
+.biz-featured-stat-lbl {
+  font-family:'DM Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-top:2px;
+}
+
+/* ── MARKETS ── */
+.markets-wrap {display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.market-map {
+  background:var(--ink);border-radius:8px;
+  padding:40px;position:relative;overflow:hidden;
+  min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.market-map::before {
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 30%,rgba(0,196,212,0.08),transparent);
+}
+.africa-outline {
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  font-size:120px;opacity:0.06;filter:grayscale(1);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-8px);}}
+.market-pins {position:absolute;inset:0;}
+.mpin {
+  position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;
+  cursor:pointer;
+}
+.mpin-dot {
+  width:10px;height:10px;border-radius:50%;
+  box-shadow:0 0 0 4px rgba(255,255,255,0.08);
+  animation:pinPulse 2s ease-in-out infinite;
+}
+@keyframes pinPulse{0%,100%{box-shadow:0 0 0 4px rgba(255,255,255,0.08);}50%{box-shadow:0 0 0 8px rgba(255,255,255,0.04);}}
+.mpin-label {
+  font-family:'DM Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.1em;color:rgba(255,255,255,0.5);
+  white-space:nowrap;background:rgba(10,15,10,0.8);
+  padding:2px 6px;border-radius:3px;
+}
+.market-list {display:flex;flex-direction:column;gap:20px;}
+.mitem {
+  padding:20px 24px;background:var(--bg2);
+  border:1px solid var(--border);border-radius:var(--r);
+  display:flex;align-items:flex-start;gap:16px;
+  transition:border-color 0.2s;
+}
+.mitem:hover{border-color:var(--cyan);}
+.mitem-flag{font-size:1.8rem;flex-shrink:0;}
+.mitem-info{flex:1;}
+.mitem-country{font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:2px;}
+.mitem-products{font-size:0.78rem;color:var(--muted2);}
+.mitem-count {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:700;color:var(--ink);
+}
+.mitem-count-lbl{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted2);letter-spacing:0.1em;}
+
+/* ── TEAM ── */
+.team-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:60px;}
+.team-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+  padding:32px 28px;text-align:center;transition:all 0.2s;
+}
+.team-card:hover{border-color:var(--cyan);transform:translateY(-2px);}
+.team-avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 16px;
+  background:linear-gradient(135deg,var(--ink),var(--ink2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;
+  color:var(--cyan);
+}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.team-role{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:12px;}
+.team-bio{font-size:0.8rem;color:var(--muted);line-height:1.65;}
+
+/* ── CONTACT ── */
+.contact{background:var(--ink);position:relative;overflow:hidden;}
+.contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(0,196,212,0.08),transparent);
+}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.contact .section-title{color:#fff;}
+.contact .section-sub{color:rgba(255,255,255,0.45);}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cf-input,.cf-textarea,.cf-select{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);
+  color:#fff;font-family:'DM Sans',sans-serif;font-size:0.88rem;
+  padding:12px 16px;outline:none;transition:border-color 0.2s;
+}
+.cf-input:focus,.cf-textarea:focus,.cf-select:focus{border-color:var(--cyan);}
+.cf-input::placeholder,.cf-textarea::placeholder{color:rgba(255,255,255,0.25);}
+.cf-select{color:rgba(255,255,255,0.6);}
+.cf-select option{background:#0a0f0a;color:#fff;}
+.cf-textarea{min-height:100px;resize:vertical;}
+.btn-submit-cf{
+  padding:14px;background:var(--cyan);color:var(--ink);
+  font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  border:none;border-radius:var(--r);cursor:pointer;transition:all 0.2s;
+}
+.btn-submit-cf:hover{background:#00d8ea;}
+.contact-info{display:flex;flex-direction:column;gap:28px;}
+.ci-item{display:flex;align-items:flex-start;gap:16px;}
+.ci-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.ci-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;}
+.ci-val{font-size:0.9rem;color:rgba(255,255,255,0.7);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-brand{display:flex;align-items:center;gap:12px;}
+.footer-copy{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,0.25);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,0.25);text-decoration:none;text-transform:uppercase;}
+.footer-links a:hover{color:rgba(255,255,255,0.5);}
+
+/* ── DIVIDER LINE ── */
+.line-divider{height:1px;background:var(--border);margin:0 48px;}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  section{padding:64px 20px;}
+  .hero{padding:0 20px 60px;}
+  .hero-stats{display:none;}
+  .about-wrap,.markets-wrap,.contact-wrap{grid-template-columns:1fr;}
+  .biz-grid{grid-template-columns:1fr;}
+  .biz-card.featured{grid-column:span 1;grid-template-columns:1fr;}
+  .team-wrap{grid-template-columns:1fr;}
+  footer{padding:24px 20px;}
+  .line-divider{margin:0 20px;}
+  .cf-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-hex"></div>
+    <div class="nav-brand">Kongtinental <span>Ventures</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about" id="nav-about">À propos</a></li>
+    <li><a href="#businesses" id="nav-biz">Nos ventures</a></li>
+    <li><a href="#markets" id="nav-markets">Marchés</a></li>
+    <li><a href="#contact" id="nav-contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="lang-sw">
+      <button class="active" onclick="setLang('fr')">FR</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+    <a class="nav-cta" href="#contact" id="nav-cta">Nous contacter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="h-tag">Kongtinental Ventures · Cameroun · Namibie</div>
+    <h1 class="hero-title" id="h-title">
+      Bâtir l'avenir<br/>
+      numérique de <em>l'Afrique</em>
+    </h1>
+    <p class="hero-sub" id="h-sub">
+      Nous développons des produits technologiques à fort impact pour les marchés africains — de la mobilité urbaine aux services de santé, en passant par la gouvernance foncière.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#businesses" id="h-cta1">Découvrir nos ventures</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-num">5<span>+</span></div>
+      <div class="hstat-lbl" id="hs1">Produits déployés</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">3<span></span></div>
+      <div class="hstat-lbl" id="hs2">Pays actifs</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">2026</div>
+      <div class="hstat-lbl" id="hs3">En opération</div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-visual reveal">
+      <div class="about-card about-card-main">
+        <div class="about-badge">🌍 Pan-African</div>
+        <div class="about-card-overlay">
+          <div class="about-card-label" id="ac-label">Produits en déploiement</div>
+          <div class="about-card-val">5<span>+</span></div>
+        </div>
+      </div>
+      <div class="about-card about-card-sm about-card-sm-1">
+        <div class="about-sm-num">3</div>
+        <div class="about-sm-lbl" id="ac-sm1">Marchés</div>
+      </div>
+      <div class="about-card about-card-sm about-card-sm-2">
+        <div class="about-sm-num" style="color:var(--gold)">FR/EN</div>
+        <div class="about-sm-lbl" id="ac-sm2">Bilingue</div>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-1">
+      <div>
+        <div class="section-tag" id="at-tag">Notre mission</div>
+        <h2 class="section-title" id="at-title">Un groupe technologique<br/>ancré dans l'Afrique</h2>
+        <p class="section-sub" id="at-sub">Kongtinental Ventures est une holding technologique construisant des produits numériques pour les marchés africains — avec une approche locale, bilingue et inclusive.</p>
+      </div>
+      <p id="at-p1">Fondée par <strong>William Koki Ndombo</strong>, tech-entrepreneur spécialisé en cybersécurité et commerce international en Europe, Kongtinental Ventures opère au Cameroun avec des expansions prévues en Afrique Australe et en Afrique de l'Ouest.</p>
+      <div class="values-grid">
+        <div class="value-item reveal reveal-delay-1">
+          <div class="value-icon">🌍</div>
+          <div class="value-title" id="v1t">Ancrage local</div>
+          <div class="value-desc" id="v1d">Des équipes et des produits enracinés dans les réalités africaines.</div>
+        </div>
+        <div class="value-item reveal reveal-delay-2">
+          <div class="value-icon">🔐</div>
+          <div class="value-title" id="v2t">Sécurité & confiance</div>
+          <div class="value-desc" id="v2d">L'expertise cybersécurité au cœur de chaque produit.</div>
+        </div>
+        <div class="value-item reveal reveal-delay-3">
+          <div class="value-icon">🚀</div>
+          <div class="value-title" id="v3t">Impact mesurable</div>
+          <div class="value-desc" id="v3d">Des solutions qui changent concrètement le quotidien.</div>
+        </div>
+        <div class="value-item reveal reveal-delay-2">
+          <div class="value-icon">🤝</div>
+          <div class="value-title" id="v4t">Partenariats durables</div>
+          <div class="value-desc" id="v4d">Gouvernements, institutions et communautés au cœur de notre modèle.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<!-- BUSINESSES -->
+<section class="businesses" id="businesses">
+  <div class="section-tag" id="biz-tag" style="color:var(--cyan);">Nos ventures</div>
+  <h2 class="section-title reveal" id="biz-title">Deux ventures actives<br/>au Cameroun</h2>
+  <p class="section-sub reveal" id="biz-sub">Fasika et Yenle-Yaoundé sont nos deux premières ventures opérationnelles, conçues pour répondre à des besoins réels au Cameroun.</p>
+
+  <div class="biz-grid" style="grid-template-columns:1fr 1fr;max-width:900px;">
+    <!-- Fasika -->
+    <div class="biz-card featured reveal" style="--card-color:#a855f7;grid-column:span 1;display:block;">
+      <div class="biz-status status-live">● LIVE</div>
+      <div class="biz-icon">💜</div>
+      <div class="biz-name">Fasika</div>
+      <div class="biz-domain">fasika.cam</div>
+      <span class="biz-market market-cam">🇨🇲 Cameroun</span>
+      <p class="biz-desc" id="fd-fasika">Plateforme dédiée aux familles d'enfants autistes et TDAH au Cameroun. Annuaire de professionnels certifiés, communauté de parents et ressources bilingues FR/EN.</p>
+    </div>
+
+    <!-- Yenle -->
+    <div class="biz-card reveal reveal-delay-1" style="--card-color:#ff6b35;">
+      <div class="biz-status status-live">● LIVE</div>
+      <div class="biz-icon">🚦</div>
+      <div class="biz-name">Yenle-Yaoundé</div>
+      <div class="biz-domain">yenle.org</div>
+      <span class="biz-market market-cam">🇨🇲 Cameroun</span>
+      <p class="biz-desc" id="fd-yenle">Plateforme de mobilité urbaine temps réel pour Yaoundé. Signalement d'incidents, calcul d'itinéraires, alertes trafic communautaires et listings entreprises locales.</p>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="biz-card reveal reveal-delay-2" style="grid-column:span 2;border:1px dashed rgba(255,255,255,0.1);background:rgba(255,255,255,0.01);text-align:center;padding:40px;cursor:default;">
+      <div style="font-size:1.8rem;margin-bottom:12px;">🌍</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:rgba(255,255,255,0.4);margin-bottom:16px;" id="biz-soon">Coming soon : Afrique Centrale et Australe</div>
+      <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:1.4rem;margin-bottom:4px;">🇳🇦</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,0.25);text-transform:uppercase;">Namibie</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:1.4rem;margin-bottom:4px;">🇨🇮</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:rgba(255,255,255,0.25);text-transform:uppercase;">Côte d'Ivoire</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section id="markets">
+  <div class="section-tag" id="mkt-tag">Présence géographique</div>
+  <h2 class="section-title reveal" id="mkt-title">3 marchés actifs,<br/>une vision continentale</h2>
+  <div class="markets-wrap" style="margin-top:60px;">
+    <div class="market-map reveal">
+      <div class="africa-outline">🌍</div>
+      <div class="market-pins">
+        <div class="mpin" style="top:55%;left:58%;">
+          <div class="mpin-dot" style="background:var(--cyan);"></div>
+          <div class="mpin-label">Yaoundé 🇨🇲</div>
+        </div>
+        <div class="mpin" style="top:72%;left:54%;">
+          <div class="mpin-dot" style="background:rgba(255,255,255,0.25);"></div>
+          <div class="mpin-label">Windhoek 🇳🇦</div>
+        </div>
+        <div class="mpin" style="top:50%;left:42%;">
+          <div class="mpin-dot" style="background:rgba(255,255,255,0.25);"></div>
+          <div class="mpin-label">Abidjan 🇨🇮</div>
+        </div>
+        <div class="mpin" style="top:8%;left:46%;">
+          <div class="mpin-dot" style="background:var(--gold2);"></div>
+          <div class="mpin-label">France & Cameroun (HQ)</div>
+        </div>
+      </div>
+      <div style="position:relative;z-index:1;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:8px;" id="mmap-lbl">Marchés opérationnels</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:#fff;">3 <span style="color:var(--cyan)">pays</span></div>
+      </div>
+    </div>
+    <div class="market-list">
+      <div class="mitem reveal reveal-delay-1">
+        <div class="mitem-flag">🇨🇲</div>
+        <div class="mitem-info">
+          <div class="mitem-country">Cameroun</div>
+          <div class="mitem-products">fasika.cam · yenle.org</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="mitem-count" style="color:var(--cyan)">●</div>
+          <div class="mitem-count-lbl">LIVE</div>
+        </div>
+      </div>
+      <div class="mitem reveal reveal-delay-2">
+        <div class="mitem-flag">🇳🇦</div>
+        <div class="mitem-info">
+          <div class="mitem-country">Namibie</div>
+          <div class="mitem-products" id="mkt-nam-sub">Expansion prévue</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="mitem-count" style="color:var(--gold);font-size:1rem;">→</div>
+          <div class="mitem-count-lbl">2026</div>
+        </div>
+      </div>
+      <div class="mitem reveal reveal-delay-3">
+        <div class="mitem-flag">🇨🇮</div>
+        <div class="mitem-info">
+          <div class="mitem-country">Côte d'Ivoire</div>
+          <div class="mitem-products" id="mkt-ci-sub">Expansion prévue</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="mitem-count" style="color:var(--gold);font-size:1rem;">→</div>
+          <div class="mitem-count-lbl">2026</div>
+        </div>
+      </div>
+      <div class="mitem reveal reveal-delay-3" style="border-color:rgba(0,212,140,0.2);">
+        <div class="mitem-flag">🇫🇷</div>
+        <div class="mitem-info">
+          <div class="mitem-country">France & Cameroun</div>
+          <div class="mitem-products">Direction · Stratégie · Tech</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="mitem-count" style="color:var(--cyan)">🏢</div>
+          <div class="mitem-count-lbl">HQ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="reveal">
+      <div class="section-tag" id="ct-tag" style="color:var(--cyan);">Contact</div>
+      <h2 class="section-title" id="ct-title">Parlons de votre projet</h2>
+      <p class="section-sub" id="ct-sub">Investisseurs, partenaires institutionnels, médias ou talents — nous sommes ouverts à toutes les collaborations qui accélèrent l'Afrique numérique.</p>
+      <div class="contact-info" style="margin-top:40px;">
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">Siège social</div>
+            <div class="ci-val">France & Cameroun</div>
+          </div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">🌐</div>
+          <div>
+            <div class="ci-label">Ventures</div>
+            <div class="ci-val">fasika.cam · yenle.org</div>
+          </div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Téléphone</div>
+            <div class="ci-val">+237 655 202 264</div>
+          </div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <div class="ci-label">Email</div>
+            <div class="ci-val">contact@kongtinental.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal reveal-delay-1">
+      <div class="cf-row">
+        <input class="cf-input" type="text" id="cf-name" placeholder="Nom complet"/>
+        <input class="cf-input" type="email" id="cf-email" placeholder="Email"/>
+      </div>
+      <select class="cf-select" id="cf-subject">
+        <option value="" disabled selected id="cf-sel">Objet du message</option>
+        <option value="investor">Investissement / Partenariat</option>
+        <option value="media">Presse & Médias</option>
+        <option value="talent">Rejoindre l'équipe</option>
+        <option value="gov">Partenariat institutionnel</option>
+        <option value="other">Autre</option>
+      </select>
+      <textarea class="cf-textarea" id="cf-msg" placeholder="Votre message..."></textarea>
+      <button class="btn-submit-cf" id="cf-btn" onclick="submitContact()">Envoyer le message →</button>
+      <div id="cf-feedback" style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-align:center;min-height:20px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-hex" style="width:24px;height:24px;"></div>
+    <span class="footer-copy">© 2026 Kongtinental Ventures. Tous droits réservés.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#about" id="fl1">À propos</a>
+    <a href="#businesses" id="fl2">Produits</a>
+    <a href="#markets" id="fl3">Marchés</a>
+    <a href="#contact" id="fl4">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL EFFECTS ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-80) el.classList.add('visible');
+  });
+});
+// Initial reveal
+document.querySelectorAll('.reveal').forEach(el=>{
+  if(el.getBoundingClientRect().top<window.innerHeight-80) el.classList.add('visible');
+});
+
+// ── LANGUAGE ──
+let lang = 'fr';
+const T = {
+  // Nav
+  'nav-about':  {fr:"À propos",        en:"About"},
+  'nav-biz':    {fr:"Nos produits",    en:"Our businesses"},
+  'nav-markets':{fr:"Marchés",         en:"Markets"},
+  'nav-contact':{fr:"Contact",         en:"Contact"},
+  'nav-cta':    {fr:"Nous contacter",  en:"Get in touch"},
+  // Hero
+  'h-tag':   {fr:"Kongtinental Ventures · Cameroun · Namibie", en:"Kongtinental Ventures · Cameroon · Namibia"},
+  'h-title': {fr:"Bâtir l'avenir<br/>numérique de <em>l'Afrique</em>", en:"Building Africa's<br/><em>digital future</em>"},
+  'h-sub':   {fr:"Nous développons des produits technologiques à fort impact pour les marchés africains — de la mobilité urbaine aux services de santé, en passant par la gouvernance foncière.", en:"We build high-impact technology products for African markets — from urban mobility to healthcare services and land governance."},
+  'h-cta1':  {fr:"Découvrir nos produits", en:"Explore our products"},
+  'h-cta2':  {fr:"Nous rejoindre →",      en:"Join us →"},
+  'hs1':     {fr:"Produits déployés",  en:"Products deployed"},
+  'hs2':     {fr:"Pays actifs",        en:"Active countries"},
+  'hs3':     {fr:"En opération",       en:"In operation"},
+  // About
+  'ac-label':{fr:"Produits en déploiement", en:"Products deployed"},
+  'ac-sm1':  {fr:"Marchés",    en:"Markets"},
+  'ac-sm2':  {fr:"Bilingue",   en:"Bilingual"},
+  'at-tag':  {fr:"Notre mission",   en:"Our mission"},
+  'at-title':{fr:"Un groupe technologique<br/>ancré dans l'Afrique", en:"A tech holding company<br/>rooted in Africa"},
+  'at-sub':  {fr:"Kongtinental Ventures est une holding technologique construisant des produits numériques pour les marchés africains — avec une approche locale, bilingue et inclusive.", en:"Kongtinental Ventures is a technology holding company building digital products for African markets — with a local, bilingual and inclusive approach."},
+  'at-p1':   {fr:"Fondée par <strong>William Koki Ndombo</strong>, tech-entrepreneur spécialisé en cybersécurité et commerce international en Europe, Kongtinental Ventures opère au Cameroun avec des expansions prévues en Afrique Australe et en Afrique de l'Ouest.", en:"Founded by <strong>William Koki Ndombo</strong>, tech-entrepreneur specializing in cybersecurity and international trade in Europe, Kongtinental Ventures operates in Cameroon with planned expansions across Southern and West Africa."},
+  'v1t':     {fr:"Ancrage local",          en:"Local roots"},
+  'v1d':     {fr:"Des équipes et des produits enracinés dans les réalités africaines.", en:"Teams and products rooted in African realities."},
+  'v2t':     {fr:"Sécurité & confiance",   en:"Security & trust"},
+  'v2d':     {fr:"L'expertise cybersécurité au cœur de chaque produit.", en:"Cybersecurity expertise at the core of every product."},
+  'v3t':     {fr:"Impact mesurable",       en:"Measurable impact"},
+  'v3d':     {fr:"Des solutions qui changent concrètement le quotidien.", en:"Solutions that tangibly change everyday life."},
+  'v4t':     {fr:"Partenariats durables",  en:"Lasting partnerships"},
+  'v4d':     {fr:"Gouvernements, institutions et communautés au cœur de notre modèle.", en:"Governments, institutions and communities at the heart of our model."},
+  // Businesses
+  'biz-tag':  {fr:"Nos produits",   en:"Our businesses"},
+  'biz-title':{fr:"Un portefeuille de solutions<br/>pour l'Afrique de demain", en:"A portfolio of solutions<br/>for tomorrow's Africa"},
+  'biz-sub':  {fr:"Chaque produit cible un marché précis, avec un modèle économique viable et un impact direct sur les communautés locales.", en:"Each product targets a specific market, with a viable business model and direct impact on local communities."},
+  'fd-fasika':{fr:"Plateforme dédiée aux familles d'enfants autistes et TDAH au Cameroun. Annuaire de professionnels certifiés, communauté de parents et ressources bilingues FR/EN. Tarif : 5 000 XAF/mois.", en:"Platform dedicated to families of autistic and ADHD children in Cameroon. Directory of certified professionals, parent community and bilingual FR/EN resources. Fee: 5,000 XAF/month."},
+  'fd-yenle': {fr:"Plateforme de mobilité urbaine temps réel pour Yaoundé. Signalement d'incidents, calcul d'itinéraires, alertes trafic communautaires et listings entreprises locales.", en:"Real-time urban mobility platform for Yaoundé. Incident reporting, route calculation, community traffic alerts and local business listings."},
+  'fd-sheya': {fr:"Marketplace de services connectant consommateurs et artisans informels en Namibie. Modèle : déblocage de lead N$10, commission 8%, abonnement N$99/mois.", en:"Services marketplace connecting consumers with informal artisans in Namibia. Model: N$10 lead unlock fee, 8% commission, N$99/month subscription."},
+  'fd-safidoc':{fr:"Coffre-fort numérique citoyen — téléversement, chiffrement, horodatage et partage sécurisé de documents. Phase 2 : pipeline de soumission gouvernementale.", en:"Citizen digital safe — upload, encrypt, timestamp and securely share documents. Phase 2: government submission pipeline with 'Certifié SafiDoc' stamp."},
+  'fd-solum': {fr:"Intelligence foncière pour Yaoundé. Carte avec superposition des risques, rapport d'analyse parcellaire et signalement participatif de litiges.", en:"Land intelligence for Yaoundé. Risk overlay map, parcel analysis report and participatory dispute flagging."},
+  'fd-fasika-ci':{fr:"Réplication de la plateforme Fasika pour le marché d'Abidjan. Annuaire autisme/TDAH pour la Côte d'Ivoire, ciblant les familles francophones d'Afrique de l'Ouest.", en:"Replication of the Fasika platform for the Abidjan market. Autism/ADHD directory for Côte d'Ivoire, targeting French-speaking West African families."},
+  'biz-soon': {fr:"Coming soon : Afrique Centrale et Australe", en:"Coming soon to Central & Southern Africa"},
+  'mkt-tag':  {fr:"Présence géographique", en:"Geographic presence"},
+  'mkt-title':{fr:"3 marchés actifs,<br/>une vision continentale", en:"3 active markets,<br/>one continental vision"},
+  'mmap-lbl': {fr:"Marchés opérationnels", en:"Operational markets"},
+  'mkt-prod': {fr:"produits",  en:"products"},
+  'mkt-prod2':{fr:"produit",   en:"product"},
+  // Team
+  'team-tag':  {fr:"L'équipe",                      en:"The team"},
+  'team-title':{fr:"Fondateurs & équipe dirigeante", en:"Founders & leadership"},
+  'tr1':  {fr:"CEO & Fondateur",           en:"CEO & Founder"},
+  'tb1':  {fr:"Expert en cybersécurité, cloud et gestion de projets technologiques. Basé à Paris, il pilote la stratégie produit et le développement de Kongtinental Ventures.", en:"Cybersecurity, cloud and tech project management expert. Based in Paris, he drives product strategy and the development of Kongtinental Ventures across Africa."},
+  'tr2':  {fr:"Stratégie & Opérations",    en:"Strategy & Operations"},
+  'tb2':  {fr:"Responsable de la stratégie commerciale et des opérations sur le projet Sheya. Co-pilote du développement business de la plateforme en Namibie.", en:"Head of commercial strategy and operations for the Sheya project. Co-lead of the platform's business development in Namibia."},
+  'tr3-name':{fr:"Nous rejoindre",         en:"Join us"},
+  'tr3':  {fr:"Opportunités ouvertes",     en:"Open opportunities"},
+  'tb3':  {fr:"Kongtinental Ventures cherche des talents passionnés par l'Afrique numérique. Développeurs, designers, experts marché — contactez-nous.", en:"Kongtinental Ventures is looking for talent passionate about digital Africa. Developers, designers, market experts — reach out."},
+  // Contact
+  'ct-tag':   {fr:"Contact",                   en:"Contact"},
+  'ct-title': {fr:"Parlons de votre projet",   en:"Let's talk about your project"},
+  'ct-sub':   {fr:"Investisseurs, partenaires institutionnels, médias ou talents — nous sommes ouverts à toutes les collaborations qui accélèrent l'Afrique numérique.", en:"Investors, institutional partners, media or talent — we are open to all collaborations that accelerate digital Africa."},
+  'cf-sel':   {fr:"Objet du message",          en:"Subject"},
+  'cf-btn':   {fr:"Envoyer le message →",      en:"Send message →"},
+  // Footer
+  'fl1':{fr:"À propos", en:"About"},
+  'fl2':{fr:"Produits", en:"Products"},
+  'fl3':{fr:"Marchés",  en:"Markets"},
+  'fl4':{fr:"Contact",  en:"Contact"},
+};
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-sw button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-sw button:${l==='fr'?'first':'last'}-child`).classList.add('active');
+  document.documentElement.lang = l;
+  Object.keys(T).forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const val=T[id][l];
+    if(val.includes('<')) el.innerHTML=val;
+    else el.textContent=val;
+  });
+}
+
+// ── CONTACT FORM ──
+function submitContact() {
+  const name  = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const subj  = document.getElementById('cf-subject').value;
+  const msg   = document.getElementById('cf-msg').value.trim();
+  const fb    = document.getElementById('cf-feedback');
+
+  if(!name||!email||!msg){
+    fb.style.color='#ff6b6b';
+    fb.textContent = lang==='fr'?'Veuillez remplir tous les champs.':'Please fill in all fields.';
+    return;
+  }
+
+  const subject = encodeURIComponent(`[KV] ${subj||'Contact'} — ${name}`);
+  const body = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nObjet: ${subj}\n\n${msg}`);
+  window.location.href = `mailto:contact@kongtinental.com?subject=${subject}&body=${body}`;
+
+  fb.style.color='var(--cyan)';
+  fb.textContent = lang==='fr'?'✓ Merci — votre client email va s\'ouvrir.':'✓ Thank you — your email client will open.';
+}
+
+// Init reveals
+window.dispatchEvent(new Event('scroll'));
+</script>
+</body>
+</html>
